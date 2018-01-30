@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.bakingapp.Controller.Activities.StepDetailActivity">
+
+    <fragment
+        android:id="@+id/step_detail_fragment"
+        android:name="com.example.ahmed.bakingapp.Controller.Fragments.StepDetailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_step_detail" />
+
+</android.support.constraint.ConstraintLayout>

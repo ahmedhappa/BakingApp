@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tooles="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/step_detail_video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/step_detail_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:padding="25dp"
+        android:textColor="#000"
+        android:textSize="17sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/step_detail_video_player"
+        tooles:text="1. Preheat the oven to 350 \u00b0F. Butter a 9\ deep dish pie pan." />
+
+    <Button
+        android:id="@+id/step_detail_next_step"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/recipes4"
+        android:text="@string/next_step"
+        android:textColor="#FFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/step_detail_previous_step"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/recipes4"
+        android:text="@string/previous_step"
+        android:textColor="#FFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tooles="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="180dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="13dp"
+        app:cardElevation="3dp">
+
+        <RelativeLayout
+            android:id="@+id/recipes_recycler_item_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/recipes1"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/recipes_recycler_item_recipe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:textColor="#FFF"
+                android:textSize="25sp"
+                tooles:text="Recipe name" />
+
+            <TextView
+                android:id="@+id/recipes_recycler_item_recipe_servings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recipes_recycler_item_recipe_name"
+                android:layout_marginTop="10dp"
+                android:textColor="#FFF"
+                android:textSize="17sp"
+                tooles:text="Servings : 8" />
+
+            <ImageView
+                android:id="@+id/recipes_recycler_item_recipe_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

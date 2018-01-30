@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="100">
+
+    <fragment
+        android:id="@+id/detailed_fragment"
+        android:name="com.example.ahmed.bakingapp.Controller.Fragments.DetailedFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="40"
+        tools:layout="@layout/fragment_detailed" />
+
+
+    <FrameLayout
+        android:id="@+id/detailed_activity_step_detail_fragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="60" />
+
+</LinearLayout>

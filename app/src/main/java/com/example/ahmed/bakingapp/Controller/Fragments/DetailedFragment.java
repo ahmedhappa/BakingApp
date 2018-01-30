@@ -82,14 +82,8 @@ public class DetailedFragment extends Fragment implements OnStepClickListener {
 
     public void setOnStepActivityClickListener(OnStepActivityClickListener onStepActivityClickListener) {
         this.onStepActivityClickListener = onStepActivityClickListener;
-        Log.e("A77o","555555555555555555555555555");
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        this.onStepActivityClickListener =(OnStepActivityClickListener) getActivity();
-//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

@@ -24,11 +24,6 @@ public class DetailedActivity extends AppCompatActivity implements OnStepActivit
         setContentView(R.layout.activity_detailed);
         frameLayout = findViewById(R.id.detailed_activity_step_detail_fragment);
         isTwoPane = frameLayout != null;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         detailedFragment = new DetailedFragment();
         detailedFragment.setOnStepActivityClickListener(this);
     }

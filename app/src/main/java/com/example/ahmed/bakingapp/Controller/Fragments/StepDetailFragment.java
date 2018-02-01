@@ -8,11 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +68,10 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             if (savedInstanceState == null) {
                 currentPosition = bundle.getInt("step_position", 0);
             }
+            if (bundle.getBoolean("is_two_pane", false)) {
+                next.setVisibility(View.GONE);
+                previous.setVisibility(View.GONE);
+            }
         }
         //if app running on phone
         Intent intent = getActivity().getIntent();
@@ -87,6 +89,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
         previous.setOnClickListener(this);
         //play video if Existing
         if (step.getVideoURL() != null && !step.getVideoURL().equals("") && checkInternetConnection()) {
+            simpleExoPlayerView.setVisibility(View.VISIBLE);
             LoadControl loadControl = new DefaultLoadControl();
             TrackSelector trackSelector = new DefaultTrackSelector();
             simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
@@ -106,6 +109,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             }
         } else {
             Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
+            simpleExoPlayerView.setVisibility(View.INVISIBLE);
         }
         return view;
     }
@@ -147,6 +151,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                     step = recipe.getSteps().get(currentPosition);
                     desciription.setText(step.getDescription());
                     if (step.getVideoURL() != null && !step.getVideoURL().equals("") && checkInternetConnection()) {
+                        simpleExoPlayerView.setVisibility(View.VISIBLE);
                         Uri mediaUri = Uri.parse(step.getVideoURL());
                         MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getActivity(), userAgent)
                                 , new DefaultExtractorsFactory(), null, null);
@@ -154,6 +159,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                         simpleExoPlayer.setPlayWhenReady(true);
                     } else {
                         Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
+                        simpleExoPlayerView.setVisibility(View.INVISIBLE);
                     }
 
                 } else {
@@ -175,6 +181,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                     step = recipe.getSteps().get(currentPosition);
                     desciription.setText(step.getDescription());
                     if (step.getVideoURL() != null && !step.getVideoURL().equals("") && checkInternetConnection()) {
+                        simpleExoPlayerView.setVisibility(View.VISIBLE);
                         Uri mediaUri = Uri.parse(step.getVideoURL());
                         MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getActivity(), userAgent)
                                 , new DefaultExtractorsFactory(), null, null);
@@ -182,6 +189,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                         simpleExoPlayer.setPlayWhenReady(true);
                     } else {
                         Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
+                        simpleExoPlayerView.setVisibility(View.INVISIBLE);
                     }
 
                 } else {

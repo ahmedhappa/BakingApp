@@ -72,6 +72,30 @@ public class Recipe implements Parcelable {
         steps = in.createTypedArrayList(Step.CREATOR);
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setServings(String servings) {
+        this.servings = servings;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
+    }
+
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
         @Override
         public Recipe createFromParcel(Parcel in) {

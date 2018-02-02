@@ -146,10 +146,15 @@ public class DetailedFragment extends Fragment implements OnStepClickListener {
         super.onSaveInstanceState(outState);
         LinearLayoutManager ingredientsRecyclerManager = (LinearLayoutManager) ingredientsRecycler.getLayoutManager();
         LinearLayoutManager stepsRecyclerManager = (LinearLayoutManager) stepsRecycler.getLayoutManager();
-        int ingredientsPosition = ingredientsRecyclerManager.findFirstCompletelyVisibleItemPosition();
-        int stepsPosition = stepsRecyclerManager.findFirstCompletelyVisibleItemPosition();
-        outState.putInt("ingredients_recycler_position", ingredientsPosition);
-        outState.putInt("steps_recycler_position", stepsPosition);
+        if (ingredientsRecyclerManager != null) {
+            int ingredientsPosition = ingredientsRecyclerManager.findFirstCompletelyVisibleItemPosition();
+            outState.putInt("ingredients_recycler_position", ingredientsPosition);
+        }
+        if (stepsRecyclerManager != null) {
+            int stepsPosition = stepsRecyclerManager.findFirstCompletelyVisibleItemPosition();
+            outState.putInt("steps_recycler_position", stepsPosition);
+        }
+
     }
 
 }

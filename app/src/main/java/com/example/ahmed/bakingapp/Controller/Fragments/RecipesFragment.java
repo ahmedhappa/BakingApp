@@ -143,10 +143,10 @@ public class RecipesFragment extends Fragment implements LoaderManager.LoaderCal
         if (s != null && !s.equals("")) {
             recipes = jsonParser(s);
             RecipesAdapter recipesAdapter = new RecipesAdapter(recipes, getActivity());
-            if (tabletDevice != null){
-                recipesRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-            }else{
-                recipesRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+            if (tabletDevice != null) {
+                recipesRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+            } else {
+                recipesRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
             }
 
             recipesRecyclerView.setAdapter(recipesAdapter);
@@ -229,7 +229,9 @@ public class RecipesFragment extends Fragment implements LoaderManager.LoaderCal
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         GridLayoutManager gridLayoutManager = (GridLayoutManager) recipesRecyclerView.getLayoutManager();
-        int recyclerPositionBeforeRotate = gridLayoutManager.findFirstCompletelyVisibleItemPosition();
-        outState.putInt("recycler_position", recyclerPositionBeforeRotate);
+        if (gridLayoutManager != null) {
+            int recyclerPositionBeforeRotate = gridLayoutManager.findFirstCompletelyVisibleItemPosition();
+            outState.putInt("recycler_position", recyclerPositionBeforeRotate);
+        }
     }
 }

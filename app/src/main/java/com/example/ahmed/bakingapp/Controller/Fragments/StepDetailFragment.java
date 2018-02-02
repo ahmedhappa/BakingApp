@@ -8,10 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Ahmed on 29/01/2018.
@@ -40,6 +43,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
     Button next, previous;
     Step step;
     Recipe recipe;
+    ImageView stepImage;
     int currentPosition;
     SimpleExoPlayerView simpleExoPlayerView;
     SimpleExoPlayer simpleExoPlayer;
@@ -55,6 +59,8 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
         desciription = view.findViewById(R.id.step_detail_description);
         next = view.findViewById(R.id.step_detail_next_step);
         previous = view.findViewById(R.id.step_detail_previous_step);
+        stepImage = view.findViewById(R.id.step_detail_image);
+
         if (savedInstanceState != null) {
             videoPositionState = savedInstanceState.getLong("video_position", -1);
             currentPosition = savedInstanceState.getInt("step_current_position", 0);
@@ -85,6 +91,12 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
         getActivity().setTitle(recipe.getName());
         step = recipe.getSteps().get(currentPosition);
         desciription.setText(step.getDescription());
+        if (step.getThumbnailURL() != null && !step.getThumbnailURL().equals("")) {
+            Picasso.with(getActivity())
+                    .load(step.getThumbnailURL())
+                    .into(stepImage);
+            Log.e("test", step.getThumbnailURL());
+        }
         next.setOnClickListener(this);
         previous.setOnClickListener(this);
         //play video if Existing
@@ -110,13 +122,14 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
         } else {
             Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
             simpleExoPlayerView.setVisibility(View.INVISIBLE);
+            desciription.setVisibility(View.VISIBLE);
         }
         return view;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         if (simpleExoPlayer != null) {
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
@@ -160,6 +173,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                     } else {
                         Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
                         simpleExoPlayerView.setVisibility(View.INVISIBLE);
+                        desciription.setVisibility(View.VISIBLE);
                     }
 
                 } else {
@@ -190,6 +204,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
                     } else {
                         Toast.makeText(getActivity(), "No video available", Toast.LENGTH_SHORT).show();
                         simpleExoPlayerView.setVisibility(View.INVISIBLE);
+                        desciription.setVisibility(View.VISIBLE);
                     }
 
                 } else {

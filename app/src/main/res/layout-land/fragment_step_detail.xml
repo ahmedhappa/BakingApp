@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
     <TextView
         android:id="@+id/step_detail_description"
         android:layout_width="wrap_content"
@@ -18,9 +19,19 @@
         android:padding="25dp"
         android:textColor="#000"
         android:textSize="17sp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/step_detail_video_player"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         tooles:text="1. Preheat the oven to 350 \u00b0F. Butter a 9\ deep dish pie pan." />
+
+    <ImageView
+        android:id="@+id/step_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/step_detail_description" />
 
     <Button
         android:id="@+id/step_detail_next_step"

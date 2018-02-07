@@ -1,6 +1,5 @@
 package com.example.ahmed.bakingapp.Controller.Fragments;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,9 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RemoteViews;
 
-import com.example.ahmed.bakingapp.Controller.Activities.DetailedActivity;
 import com.example.ahmed.bakingapp.Controller.Adapters.IngredientsAdapter;
 import com.example.ahmed.bakingapp.Controller.Adapters.StepsAdapter;
 import com.example.ahmed.bakingapp.Controller.Interfaces.OnStepActivityClickListener;
@@ -74,25 +71,12 @@ public class DetailedFragment extends Fragment implements OnStepClickListener {
                 editor.apply();
                 myDatabase.insertRecipesData(recipe);
                 //update widget Contents if recipe changed
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-                int[] appWidgets = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), RecipeWidget.class));
-                for (int appWidget : appWidgets) {
-                    RemoteViews views = new RemoteViews(getActivity().getPackageName(), R.layout.recipe_widget);
-                    StringBuilder ingredientData = new StringBuilder();
-                    for (int i = 0; i < recipe.getIngredients().size(); i++) {
-                        ingredientData.append(recipe.getIngredients().get(i).getMeasure()).append("   ")
-                                .append(recipe.getIngredients().get(i).getQuantity())
-                                .append("   ").append(recipe.getIngredients()
-                                .get(i).getIngredient()).append("\n");
-                    }
-                    views.setTextViewText(R.id.widget_recipe_ingredients, ingredientData.toString());
-                    views.setTextViewText(R.id.widget_recipe_name, recipe.getName());
-                    Intent myPendingIntent = new Intent(getActivity(), DetailedActivity.class);
-                    myPendingIntent.putExtra("lunched_from_widget", true);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, myPendingIntent, 0);
-                    views.setOnClickPendingIntent(R.id.widget_root_view, pendingIntent);
-                    appWidgetManager.updateAppWidget(appWidget, views);
-                }
+                Intent widgetIntent = new Intent(getActivity(), RecipeWidget.class);
+                widgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                int[] widgetIds = AppWidgetManager.getInstance(getActivity()).
+                        getAppWidgetIds(new ComponentName(getActivity(), RecipeWidget.class));
+                widgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
+                getActivity().sendBroadcast(widgetIntent);
             }
         }
 

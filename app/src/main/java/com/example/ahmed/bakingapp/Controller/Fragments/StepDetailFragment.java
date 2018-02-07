@@ -95,7 +95,6 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             Picasso.with(getActivity())
                     .load(step.getThumbnailURL())
                     .into(stepImage);
-            Log.e("test", step.getThumbnailURL());
         }
         next.setOnClickListener(this);
         previous.setOnClickListener(this);
